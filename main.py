@@ -10,13 +10,19 @@ import requests
 # ========== Functions ==========
 
 def selectedFrom(event):
-    choice = pickCurrencyFrom.get()
-    return choice
+    """
+    Grabs the user's selection from the drop down menu from CURRENT
+    """
+    return pickCurrencyFrom.get()
+
 
 
 def selectedTo(event):
-    choice2 = pickCurrencyTo.get()
-    return choice2
+    """
+    Grabs the user's selection from the drop down menu from DESIRED
+    """
+    return pickCurrencyTo.get()
+
 
 
 def clearValues():
