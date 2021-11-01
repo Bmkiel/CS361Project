@@ -8,23 +8,6 @@ import requests
 
 
 # ========== Functions ==========
-
-def selectedFrom(event):
-    """
-    Grabs the user's selection from the drop down menu from CURRENT
-    """
-    return pickCurrencyFrom.get()
-
-
-
-def selectedTo(event):
-    """
-    Grabs the user's selection from the drop down menu from DESIRED
-    """
-    return pickCurrencyTo.get()
-
-
-
 def clearValues():
     """
     Used to clear current/desired input fields and current selection of currencies
@@ -48,8 +31,7 @@ def currencyConversion():
     userInput = entryField.get()
     currentCurrency = pickCurrencyFrom.get()
     desiredCurrency = pickCurrencyTo.get()
-    r = 'http://api.currencylayer.com/live?access_key=d4c293de8c4d087826ede4613c44aecc&format=1'
-
+    # Checks to make sure user supplied 3 inputs
     if userInput == "":
         tkinter.messagebox.showerror("Error", "Please input a value to be converted.")
     elif currentCurrency == "Choose Current: ":
@@ -57,12 +39,16 @@ def currencyConversion():
     elif desiredCurrency == "Choose Desired: ":
         tkinter.messagebox.showerror("Error", "Please select desired currency type.")
     else:
-        data = requests.get(r).json()
-        current = currentCurrency.strip() + desiredCurrency.strip()
-        userInput = float(userInput)
-        cc = data['quotes'][current]
-        conversion = cc*userInput
-        entryFieldOutput.insert(0, conversion)
+        # Sets base currency to current, desired currency and amount to be converted.
+        # Clear field before outputting so user does not have to CLEAR
+        entryFieldOutput.delete(0, END)
+        response = requests.get(f'http://v6.exchangerate-api.com/v6/e3d569feabb94a65b8c21c60/pair/{currentCurrency}/{desiredCurrency}/{userInput}')
+        data = response.json()
+        conversionResult = data['conversion_result']
+        # Round data by 2 decimal places
+        conversionResult = round(conversionResult, 2)
+        # Output into text field
+        entryFieldOutput.insert(0, conversionResult)
 
 
 if __name__ == '__main__':
@@ -104,8 +90,8 @@ if __name__ == '__main__':
     pickCurrencyFrom = StringVar(window)
     pickCurrencyTo = StringVar(window)
     # Set initial menu text and add options to dropdown
-    drop = OptionMenu(window, pickCurrencyFrom, *dropDownOptions, command=selectedFrom)
-    drop2 = OptionMenu(window, pickCurrencyTo, *dropDownOptions, command=selectedTo)
+    drop = OptionMenu(window, pickCurrencyFrom, *dropDownOptions)
+    drop2 = OptionMenu(window, pickCurrencyTo, *dropDownOptions)
     pickCurrencyFrom.set("Choose Current: ")
     pickCurrencyTo.set("Choose Desired: ")
 
