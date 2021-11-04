@@ -14,70 +14,47 @@ def selectedFrom(event):
     """
     # Grab user's current currency selection
     from_ = pickCurrencyFrom.get()
-    # Checks currency and outputs accordingly
+    # Checks currency selected and outputs accordingly through wikiscraper
+    # selected = wiki search term
+    # sentences = amount of sentences to return
     if from_ == "USD":
-        entryFieldOutput.delete(0, END)
-        response = requests.get(
-            f'https://wiki-scrape-361.herokuapp.com/firstpara/UnitedStatesDollar/1')
-        data = response.json()
-        textinfo = data['output']
-        canvas1.itemconfig(currentInfo, text=textinfo)
+        selected = "UnitedStatesDollar"
+        sentences = "1"
     elif from_ == "EUR":
-        entryFieldOutput.delete(0, END)
-        response = requests.get(
-            f'https://wiki-scrape-361.herokuapp.com/firstpara/European_Currency/2')
-        data = response.json()
-        textinfo = data['output']
-        canvas1.itemconfig(currentInfo, text=textinfo)
+        selected = "European_Currency"
+        sentences = "2"
     elif from_ == "JPY":
-        entryFieldOutput.delete(0, END)
-        response = requests.get(
-            f'https://wiki-scrape-361.herokuapp.com/firstpara/Japan_Currency/2')
-        data = response.json()
-        textinfo = data['output']
-        canvas1.itemconfig(currentInfo, text=textinfo)
+        selected = "Japan_Currency"
+        sentences = "2"
     elif from_ == "GBP":
-        entryFieldOutput.delete(0, END)
-        response = requests.get(
-            f'https://wiki-scrape-361.herokuapp.com/firstpara/Great_Britain_Pound/1')
-        data = response.json()
-        textinfo = data['output']
-        canvas1.itemconfig(currentInfo, text=textinfo)
+        selected = "Great_Britain_Pound"
+        sentences = "1"
     elif from_ == "AUD":
-        entryFieldOutput.delete(0, END)
-        response = requests.get(
-            f'https://wiki-scrape-361.herokuapp.com/firstpara/Austrailian_dollar/2')
-        data = response.json()
-        textinfo = data['output']
-        canvas1.itemconfig(currentInfo, text=textinfo)
+        selected = "Austrailian_dollar"
+        sentences = "2"
     elif from_ == "CAD":
-        entryFieldOutput.delete(0, END)
-        response = requests.get(
-            f'https://wiki-scrape-361.herokuapp.com/firstpara/Canadian_dollar/2')
-        data = response.json()
-        textinfo = data['output']
-        canvas1.itemconfig(currentInfo, text=textinfo)
+        selected = "Canadian_Dollar"
+        sentences = "2"
     elif from_ == "CHF":
-        entryFieldOutput.delete(0, END)
-        response = requests.get(
-            f'https://wiki-scrape-361.herokuapp.com/firstpara/Swissfranc/3')
-        data = response.json()
-        textinfo = data['output']
-        canvas1.itemconfig(currentInfo, text=textinfo, font=font3)
+        selected = "Swissfranc"
+        sentences = "3"
     elif from_ == "HKD":
-        entryFieldOutput.delete(0, END)
-        response = requests.get(
-            f'https://wiki-scrape-361.herokuapp.com/firstpara/HKD/2')
-        data = response.json()
-        textinfo = data['output']
-        canvas1.itemconfig(currentInfo, text=textinfo)
+        selected = "HKD"
+        sentences = "2"
     elif from_ == "NZD":
-        entryFieldOutput.delete(0, END)
-        response = requests.get(
-            f'https://wiki-scrape-361.herokuapp.com/firstpara/NZD/1')
-        data = response.json()
-        textinfo = data['output']
-        canvas1.itemconfig(currentInfo, text=textinfo)
+        selected = "NZD"
+        sentences = "1"
+    # Variables have been set accordingly and now wikiscraper does its job
+    entryFieldOutput.delete(0, END)
+    response = requests.get(
+        f'https://wiki-scrape-361.herokuapp.com/firstpara/{selected}/{sentences}')
+    data = response.json()
+    textinfo = data['output']
+    if from_ == "CHF":
+        canvas1.itemconfig(currentInfo, text=textinfo, font=font3)
+    else:
+        canvas1.itemconfig(currentInfo, text=textinfo, font=bold_font2)
+
 
 def selectedTo(event):
     """
@@ -87,68 +64,43 @@ def selectedTo(event):
     to_ = pickCurrencyTo.get()
     # Checks currency and outputs accordingly
     if to_ == "USD":
-        entryFieldOutput.delete(0, END)
-        response = requests.get(
-            f'https://wiki-scrape-361.herokuapp.com/firstpara/UnitedStatesDollar/1')
-        data = response.json()
-        textinfo = data['output']
-        canvas1.itemconfig(desireInfo, text=textinfo)
+        selected = "UnitedStatesDollar"
+        sentences = "1"
     elif to_ == "EUR":
-        entryFieldOutput.delete(0, END)
-        response = requests.get(
-            f'https://wiki-scrape-361.herokuapp.com/firstpara/European_Currency/2')
-        data = response.json()
-        textinfo = data['output']
-        canvas1.itemconfig(desireInfo, text=textinfo)
+        selected = "European_Currency"
+        sentences = "2"
     elif to_ == "JPY":
-        entryFieldOutput.delete(0, END)
-        response = requests.get(
-            f'https://wiki-scrape-361.herokuapp.com/firstpara/Japan_Currency/2')
-        data = response.json()
-        textinfo = data['output']
-        canvas1.itemconfig(desireInfo, text=textinfo)
+        selected = "Japan_Currency"
+        sentences = "2"
     elif to_ == "GBP":
-        entryFieldOutput.delete(0, END)
-        response = requests.get(
-            f'https://wiki-scrape-361.herokuapp.com/firstpara/Great_Britain_Pound/1')
-        data = response.json()
-        textinfo = data['output']
-        canvas1.itemconfig(desireInfo, text=textinfo)
+        selected = "Great_Britain_Pound"
+        sentences = "1"
     elif to_ == "AUD":
-        entryFieldOutput.delete(0, END)
-        response = requests.get(
-            f'https://wiki-scrape-361.herokuapp.com/firstpara/Austrailian_dollar/2')
-        data = response.json()
-        textinfo = data['output']
-        canvas1.itemconfig(desireInfo, text=textinfo)
+        selected = "Austrailian_dollar"
+        sentences = "2"
     elif to_ == "CAD":
-        entryFieldOutput.delete(0, END)
-        response = requests.get(
-            f'https://wiki-scrape-361.herokuapp.com/firstpara/Canadian_dollar/2')
-        data = response.json()
-        textinfo = data['output']
-        canvas1.itemconfig(desireInfo, text=textinfo)
+        selected = "Canadian_Dollar"
+        sentences = "2"
     elif to_ == "CHF":
-        entryFieldOutput.delete(0, END)
-        response = requests.get(
-            f'https://wiki-scrape-361.herokuapp.com/firstpara/Swissfranc/3')
-        data = response.json()
-        textinfo = data['output']
-        canvas1.itemconfig(desireInfo, text=textinfo, font=font3)
+        selected = "Swissfranc"
+        sentences = "3"
     elif to_ == "HKD":
-        entryFieldOutput.delete(0, END)
-        response = requests.get(
-            f'https://wiki-scrape-361.herokuapp.com/firstpara/HKD/2')
-        data = response.json()
-        textinfo = data['output']
-        canvas1.itemconfig(desireInfo, text=textinfo)
+        selected = "HKD"
+        sentences = "2"
     elif to_ == "NZD":
-        entryFieldOutput.delete(0, END)
-        response = requests.get(
-            f'https://wiki-scrape-361.herokuapp.com/firstpara/NZD/1')
-        data = response.json()
-        textinfo = data['output']
-        canvas1.itemconfig(desireInfo, text=textinfo)
+        selected = "NZD"
+        sentences = "1"
+    # Variables have been set accordingly and now wikiscraper does its job
+    entryFieldOutput.delete(0, END)
+    response = requests.get(
+        f'https://wiki-scrape-361.herokuapp.com/firstpara/{selected}/{sentences}')
+    data = response.json()
+    textinfo = data['output']
+    if to_ == "CHF":
+        canvas1.itemconfig(desireInfo, text=textinfo, font=font3)
+    else:
+        canvas1.itemconfig(desireInfo, text=textinfo, font=bold_font2)
+
 
 def clearValues():
     """
@@ -161,8 +113,8 @@ def clearValues():
         entryFieldOutput.delete(0, END)
         pickCurrencyFrom.set("Choose Current: ")
         pickCurrencyTo.set("Choose Desired: ")
-        canvas1.itemconfig(currentInfo, text="Currently Selected Info: ")
-        canvas1.itemconfig(desireInfo, text="Currently Selected Info: ")
+        canvas1.itemconfig(currentInfo, text="Currently Selected Info: ", font=bold_font2)
+        canvas1.itemconfig(desireInfo, text="Currently Selected Info: ", font=bold_font2)
     else:
         return
 
@@ -195,11 +147,20 @@ def currencyConversion():
         entryFieldOutput.insert(0, conversionResult)
 
 
+# ========== GUI Code ==========
 if __name__ == '__main__':
+
     # Create window, title window frame, and set size of the window
     window = Tk()
     window.title("Currency Converter 1.0")
     window.geometry('700x500')
+
+    # ========== Fonts ==========
+    # Create greeting/title-screen font (bolded)
+    bold_font = tkfont.Font(family="Helvetica", size=26, weight="bold")
+    bold_font2 = tkfont.Font(family="Helvetica", size=10, weight="bold")
+    font3 = tkfont.Font(family="Helvetica", size=8, weight="bold", )
+
     # Don't allow for resize, Permanent 700x500
     window.resizable(False, False)
 
@@ -213,18 +174,14 @@ if __name__ == '__main__':
     canvas1.create_image(0, 0, image=bg, anchor="nw")
     canvas1.pack(fill="both", expand=True)
 
-    # ========== Fonts ==========
-    # Create greeting/title-screen font (bolded)
-    bold_font = tkfont.Font(family="Helvetica", size=26, weight="bold")
-    bold_font2 = tkfont.Font(family="Helvetica", size=10, weight="bold")
-    font3 = tkfont.Font(family="Helvetica", size=8, weight="bold",)
-
-    # Create option menu for drop down
+    # Create option menu for drop down containing items in the list
     dropDownOptions = ['USD', 'EUR', 'JPY', 'GBP', 'AUD', 'CAD', 'CHF', 'HKD', 'NZD']
 
+    # Sets fields to strings
     pickCurrencyFrom = StringVar(window)
     pickCurrencyTo = StringVar(window)
-    # Set initial menu text and add options to dropdown
+
+    # Add options to dropdown and set initial menu text
     drop = OptionMenu(window, pickCurrencyFrom, *dropDownOptions, command=selectedFrom)
     drop2 = OptionMenu(window, pickCurrencyTo, *dropDownOptions, command=selectedTo)
     pickCurrencyFrom.set("Choose Current: ")
@@ -235,21 +192,19 @@ if __name__ == '__main__':
     # Create rectangle around title/greeting
     greetWhiteBox = canvas1.create_rectangle(canvas1.bbox(greetText), fill="white")
 
-    # Create rectangle for inputs from WIKISCRAPER
-    # Size; x = 300 y = 175
-    # Current
+    # Create area for wikiscraper to output "Current" selected info out
     currentInfo = StringVar(window)
     currentInfo = canvas1.create_text(165, 375, width=250, text=" Currently selected info: ", fill="black",
                                       font=bold_font2)
 
-    # Desired
+    # Create area for wikiscraper to output "Desired" selected info out
     desireInfo = StringVar(window)
     desireInfo = canvas1.create_text(510, 375, width=250, text=" Desired info: ", fill="black", font=bold_font2)
 
-    # Send the background color to the back and bring the text to the front
+    # Send the background color to the back and bring the text to the front for greeting
     canvas1.tag_lower(greetWhiteBox, greetText)
 
-    # Input Instructions
+    # Program instructions
     bgText = canvas1.create_text(530, 145, text=" Instructions:  \n"
                                                 " 1. Input current currency amount  \n"
                                                 " 2. Choose current currency via dropdown  \n"
@@ -259,7 +214,8 @@ if __name__ == '__main__':
 
     # Create rectangle in white around the text for the instructions
     textWhiteBox = canvas1.create_rectangle(canvas1.bbox(bgText), fill="white")
-    # Send the background color to the back and bring the text to the front
+
+    # Send the background color to the back and bring the text to the front for instructions text
     canvas1.tag_lower(textWhiteBox, bgText)
 
     # Create Buttons/Inputs/dropdowns
@@ -270,17 +226,19 @@ if __name__ == '__main__':
     # Entry fields
     entryField = Entry(window, width=20, bd=5, justify=RIGHT)
     entryFieldOutput = Entry(window, width=20, bd=5, justify=RIGHT)
-    # Grey out (Disable) output field
 
     # ========== Display Buttons ==========
-    # Add convert button
+    # Add convert button (Clickable button for initiating conversion)
     convertButton_canvas = canvas1.create_window(315, 225, anchor="nw", window=convertButton)
-    # Add clear button
+
+    # Add clear button (Clickable button for clearing information from screen)
     clearButton_canvas = canvas1.create_window(322, 255, anchor="nw", window=clearButton)
-    # Add entry fields
+
+    # Add entry fields (Current and Desired)
     canvas1.create_window(100, 225, anchor="nw", window=entryField)
     canvas1.create_window(450, 225, anchor="nw", window=entryFieldOutput)
-    # Add drop down menus
+
+    # Add drop down menus (Holds various currencies to convert to and from)
     canvas1.create_window(100, 255, anchor="nw", window=drop, width=134)
     canvas1.create_window(450, 255, anchor="nw", window=drop2, width=134)
 
