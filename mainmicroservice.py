@@ -10,6 +10,9 @@ CORS(app)
 
 class CountryCurrency(Resource):
     def get(self, code):
+        """
+        Takes in a country 2 digit code and returns the currency that country uses.
+        """
         output = countryCurrency(code)
         return {
             'input': code,
