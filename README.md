@@ -1,5 +1,5 @@
 # CS361Project
-Currency Conversion V1.0
+Currency Conversion
 
 ### Description:
 Project allows for a user to convert from between the top 9 currencies used worldwide. 
